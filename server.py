@@ -3,14 +3,20 @@
 
 import cv2
 import imagezmq
+import time 
 import numpy as np
 
-
+print("waiting for connection")
 imageHub = imagezmq.ImageHub()
 
+test = cv2.imread("snapshot.png")
+cv2.imshow("Camera View", test)
+cv2.waitKey(1)
+time.sleep(5.0)
+cv2.destroyAllWindows()
 
 while True:
-    # receive frame
+    print("waiting for new frame")
     rpiName, frame = imageHub.recv_image()
     cv2.imshow("Camera View", frame)
 
